@@ -1,5 +1,12 @@
+*{
+    box-sizing: border-box;
+    font-family: "Noto Sans TC", sans-serif;
+}
 html {
     font-size: 20px;
+}
+a{
+    text-decoration: none;
 }
 h2 {
     font-size: 40px;
