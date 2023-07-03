@@ -11,6 +11,9 @@ h1, h2 {
 h2 {
     font-size: 40px;
 }
+img {
+    object-fit: cover;
+}
 header {
     padding: 20px;
 }
