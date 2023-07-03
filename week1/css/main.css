@@ -49,7 +49,19 @@ header {
 }
 .contentCards li {
     width: calc(16.66666% - 16.66666px);
+    position: relative;
 }
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+     color: #E1C06F;
+     position: absolute;
+     right: 8px;
+     top: 8px;
+  }
 .contentCards h3 {
     text-align: center;
     padding: 10px 0;
