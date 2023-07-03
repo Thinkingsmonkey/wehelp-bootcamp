@@ -35,7 +35,7 @@ header {
     background-color: #CCDDE8;
 }
 .headerCards li {
-    width: 33.33333%;
+    width: calc(33.33333% - 13.3333px);
 }
 .headerCards h3 {
     margin-left: 20px;
