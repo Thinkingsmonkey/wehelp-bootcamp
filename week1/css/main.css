@@ -40,8 +40,15 @@ header {
 .headerCards li {
     width: calc(33.33333% - 13.3333px);
 }
+.headerCards img {
+    width: 80px;
+    height: 50px;
+}
 .headerCards h3 {
     margin-left: 20px;
+}
+.contentCards li {
+    width: calc(16.66666% - 16.66666px);
 }
 .contentCards h3 {
     text-align: center;
