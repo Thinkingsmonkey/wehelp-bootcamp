@@ -5,9 +5,39 @@
 html {
     font-size: 20px;
 }
-a{
-    text-decoration: none;
+h1, h2 {
+    font-weight: 600;
 }
 h2 {
     font-size: 40px;
+}
+header {
+    padding: 20px;
+}
+.menu__link{
+    margin-left: 20px;
+}
+.banner {
+    background-color: #DDEEF8;
+    height: 250px;
+}
+.cardList {
+    max-width: 1200px;
+    padding: 0 10px;
+}
+.cardList ul {
+    gap: 20px;
+}
+.cardList li {
+    background-color: #CCDDE8;
+}
+.headerCards li {
+    width: 33.33333%;
+}
+.headerCards h3 {
+    margin-left: 20px;
+}
+.contentCards h3 {
+    text-align: center;
+    padding: 10px 0;
 }
