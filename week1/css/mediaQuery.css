@@ -1,0 +1,35 @@
+@media (max-width: 1200px) {
+    .cardList {
+        width: 90%;
+    }
+    .headerCards li:not(:last-child) {
+        width: calc(50% - 10px);
+    }
+    .headerCards li:last-child {
+        width: 100%;
+    }
+    .contentCards li {
+        width: calc(25% - 15px);
+    }
+    .contentCards img {
+        width: 100%;
+    }
+}
+@media (min-width: 360px) and (max-width: 600px) {
+    .menu {
+        display: none;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    .menuBurger {
+        display: block;
+        height: 40px;
+    }
+    .headerCards li:nth-child(n) {
+        width: 100%;
+    }
+    .contentCards li {
+        width: 100%;
+    }
+}
