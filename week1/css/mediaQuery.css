@@ -51,7 +51,6 @@
     }
     .menuBurger {
         display: block;
-        height: 40px;
     }
     .headerCards li:nth-child(n) {
         width: 100%;
