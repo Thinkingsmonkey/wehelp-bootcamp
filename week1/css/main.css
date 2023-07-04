@@ -70,16 +70,17 @@ header {
 .contentCards h3 {
     text-align: center;
     padding: 10px 0;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 .contentCards li::before {
     content: "";
-    background: url("https://picsum.photos/500/200")no-repeat 50% 65%;
-	background-size: cover;
+    background-color: #fff;
     position: absolute;
     height: 40px;
     width: 100%;
-    opacity: .3;
+    opacity: .5;
     bottom: 0;
     left: 0;
 }
