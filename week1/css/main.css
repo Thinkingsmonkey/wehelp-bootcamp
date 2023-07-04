@@ -18,6 +18,10 @@ header {
     padding: 20px;
 }
 .menuBurger {
+    height: 40px;
+    display: none;
+}
+.menuBurgerBg{
     display: none;
 }
 .menu__link{

@@ -18,7 +18,33 @@
 }
 @media (min-width: 360px) and (max-width: 600px) {
     .menu {
-        display: none;
+        position: fixed;
+        z-index: 2;
+        right: -100%;
+        top: 0;
+        width: 50%;
+        height: 100vh;
+        padding-top: 60px;
+        transition: right .3s ease-in-out;
+        flex-direction: column;
+        gap: 60px;
+        text-align: center;
+        background-color: #fff;
+        box-shadow: -1px 0px 5px #ccc;
+    }
+    .menu.active {
+        right: 0;
+    }
+    .menu.active .menuBurgerBg {
+        display: block;
+        width: calc(50% - 1px);
+        height: 100vh;
+        position: fixed;
+        z-index: 3;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        background-color: #666;
     }
     h1 {
         font-size: 40px;
@@ -33,4 +59,5 @@
     .contentCards li {
         width: 100%;
     }
+
 }

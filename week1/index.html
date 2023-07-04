@@ -16,13 +16,15 @@
         <a href="" herf="#">
             <h1>My Website</h1>
         </a>
-        <ul class="menu d-flex">
+        <ul class="menu d-flex ">
             <li><a href="" herf="#" class="menu__link">Item1</a></li>
             <li><a href="" herf="#" class="menu__link">Item2</a></li>
             <li><a href="" herf="#" class="menu__link">Item3</a></li>
             <li><a href="" herf="#" class="menu__link">Item4</a></li>
+            <div class="menuBurgerBg"></div>
         </ul>
         <img src="./img/burger.png" alt="" class="menuBurger">
+        
     </header>
     <div class="banner d-flex justify-content-center align-items-center">
         <h2 class="text-center">Welccome to MyHome</h2>
@@ -131,6 +133,16 @@
             </ul>
         </div>
     </main>
-    
+    <script>
+        let burger = document.querySelector('.menuBurger');
+        let menu = document.querySelector(".menu");
+        const burgerBg = document.querySelector('.menuBurgerBg')
+        console.log(menu, burger, burgerBg);
+        function burgerActive() {
+            menu.classList.toggle('active');
+        }
+        burger.addEventListener("click", burgerActive)
+        burgerBg.addEventListener("click", burgerActive)
+    </script>
 </body>
 </html>
