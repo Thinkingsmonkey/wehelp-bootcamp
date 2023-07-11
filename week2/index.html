@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Task1
+      console.log("Task1：");
+
+      function findAndPrint(messages) {
+        // include 18、college、legal、vote
+        const overStrs = ["18", "college ", "legal", "vote"];
+        names = Object.keys(messages);
+        names.forEach((name) => {
+          overStrs.forEach((overStr) => {
+            if (messages[name].includes(overStr)) {
+              console.log(name);
+            }
+          });
+        });
+      }
+      findAndPrint({
+        Bob: "My name is Bob. I'm 18 years old.",
+        Mary: "Hello, glad to meet you.",
+        Copper: "I'm a college student. Nice to meet you.",
+        Leslie: "I am of legal age in Taiwan.",
+        Vivian: "I will vote for Donald Trump next week",
+        Jenny: "Good morning.",
+      });
+    </script>
+
+    <script>
+      // Task2
+      console.log("\nTask2：");
+
+      function calculateSumOfBonus(data) {
+        // write down your bonus rule in comments
+        // bonus = role * performance * (salary*5%)
+        // role = {CEO: 1.3, Engineer:1.2, Sales: 1.2}
+        // performance = {above average: 1.3, average: 1.1, below average: 0.9}
+        const role = { CEO: 1.3, Engineer: 1.2, Sales: 1.2 };
+        const performance = {
+          "above average": 1.3,
+          average: 1.1,
+          "below average": 0.9,
+        };
+        let total = 0;
+
+        let employees = Object.values(data)[0];
+        employees.forEach((employee) => {
+          if (typeof employee.salary === "number") {
+            employee.salary = employee.salary.toString();
+          }
+          employee.salary = employee.salary.replace(",", "");
+          if (employee.salary.includes("USD")) {
+            employee.salary = parseInt(employee.salary) * 30;
+          }
+          total +=
+            role[employee.role] *
+            performance[employee.performance] *
+            (employee.salary / 20);
+        });
+        console.log(total);
+      }
+      calculateSumOfBonus({
+        employees: [
+          {
+            name: "John",
+            salary: "1000USD",
+            performance: "above average",
+            role: "Engineer",
+          },
+          {
+            name: "Bob",
+            salary: 60000,
+            performance: "average",
+            role: "CEO",
+          },
+          {
+            name: "Jenny",
+            salary: "50,000",
+            performance: "below average",
+            role: "Sales",
+          },
+        ],
+      }); // call calculateSumOfBonus function
+    </script>
+
+    <script>
+      // Task3
+      console.log("\nTask3：");
+
+      function func(...data) {
+        let unique = false; // 是不是單一的中間名
+
+        data.forEach((name1, name1Index) => {
+          let sameNumber = 0; // 相同次數
+          data.forEach((name2, name2Index) => {
+            // 相同時，相同次數加一
+            if (name1[1] === name2[1]) {
+              sameNumber++;
+            }
+          });
+          // 當相同次數為一(與自己對比時)，即為單一中間名
+          if (sameNumber === 1) {
+            unique = true;
+            console.log(name1);
+          }
+        });
+
+        if (unique === false) {
+          console.log("沒有");
+        }
+      }
+
+      func("彭⼤牆", "王明雅", "吳明"); // print 彭⼤牆
+      func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花"); // print 林花花
+      func("郭宣雅", "林靜宜", "郭宣恆", "林靜花"); // print 沒有
+    </script>
+    <script>
+      console.log("\nTask4：");
+      function getNumber(index) {
+        // your code here
+        // 若 index 是偶數，輸出為 3(index/2)
+        // 若 index 是奇數，輸出為 3(index+1/2) +1
+
+        if (index % 2 === 0) {
+          console.log((index / 2) * 3);
+        } else {
+          console.log(((index + 1) / 2) * 3 + 1);
+        }
+      }
+
+      getNumber(1); // print 4
+      getNumber(5); // print 10
+      getNumber(10); // print 15
+    </script>
+    <script>
+      console.log("\nTask5：");
+
+      function findIndexOfCar(seats, status, number) {
+        // status = 1
+        // 列出所有 seats - number >= 0 的元素
+        // 找出 seats - number >= 0 當中的最小值
+        // 最小值對應的 status 位置
+        let obj = {};
+        status.forEach((el, statusIndex) => {
+          if (el !== 1) return;
+          if (seats[statusIndex] - number >= 0) {
+            obj[statusIndex] = seats[statusIndex] - number;
+          } else {
+            obj[statusIndex] = NaN;
+          }
+        });
+        let objK = Object.keys(obj);
+        let objV = Object.values(obj);
+        // obj {1: NaN, 3: 2, 4: 0}
+        // objK ['1', '3', '4']
+        // objV [NaN, 2, 0]
+
+        let objVf = objV.filter((num) => !Number.isNaN(num));
+        let fitIndex = Math.min(...objVf);
+        if (objVf.length === 0) {
+          console.log(-1);
+        } else {
+          console.log(objK[objV.indexOf(fitIndex)]);
+        }
+      }
+      findIndexOfCar([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2); // print 4
+      findIndexOfCar([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4); // print -1
+      findIndexOfCar([4, 6, 5, 8], [0, 1, 1, 1], 4); // print 2
+    </script>
+  </body>
+</html>
