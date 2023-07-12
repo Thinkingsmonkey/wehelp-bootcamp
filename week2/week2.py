@@ -126,3 +126,50 @@ def find_index_of_car(seats, status, number):
 find_index_of_car([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2) # print 4
 find_index_of_car([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4) # print -1
 find_index_of_car([4, 6, 5, 8], [0, 1, 1, 1], 5) # print 2
+
+# Additional Task1
+print("\nAdditional Task1：")
+def max_product(nums):
+    # 兩兩相乘後所有結果組成新 list
+    # 找出 list 中最大數
+  lis = []
+  for index1, num1 in enumerate(nums) :
+      for index2, num2  in enumerate(nums):
+        if index1 == index2: 
+          continue
+        if num1*num2 in lis:
+            continue
+        lis.append(num1 * num2)
+  for index in range(len(lis)-1):
+    if lis[index] > lis[index+1]:
+      lis[index],lis[index+1] = lis[index+1], lis[index]
+  print(lis[len(lis) - 1])
+
+max_product([5,20,2,6]) # 120
+max_product([10,-20,0,3]) # 30
+max_product([10,-20,0,-3]) # 60
+max_product([-1,2]) # -2
+max_product([-1,0,2]) # 0
+max_product([5,-1,-2,0]) # 2
+max_product([-5,-2]) # 10
+
+# Additional Task2
+print("\nAdditional Task2：")
+def twoSum(nums, target):
+  # 跑迴圈兩兩相加
+  # 找出 target = num1 + num2
+  # 若 lis 已經有 index1, index2 跳過
+  # 若 index1 = index2 跳過
+  # 將 index1, index2 append 到 lis 中
+  # print index1, index2
+  lis = []
+  for index1, num1 in enumerate(nums):
+      for index2, num2 in enumerate(nums):
+          if index1 == index2: continue
+          if index1 in lis or index2 in lis: continue
+          if num1 + num2 == target:
+              lis.append(index1)
+              lis.append(index2)
+  return lis
+result = twoSum([2, 11, 7, 15], 9)
+print(result); # show [0,2]
