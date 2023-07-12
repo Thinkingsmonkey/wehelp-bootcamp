@@ -193,10 +193,8 @@
         })
         // 兩個指針，從零與零加一開始，小的放前面大的放後面，直到跑完整個數列，最大的會在最後一個
         for (let i=0; i<arr.length; i++) {
-            let before = arr[i], after = arr[i+1];
             if (arr[i] > arr[i+1]) {
-              arr[i] = after;
-              arr[i+1] = before;
+              [arr[i], arr[i+1]] = [arr[i+1], arr[i]]
             }
         }
         console.log(arr[arr.length-1]);
