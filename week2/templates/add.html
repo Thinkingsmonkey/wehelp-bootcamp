@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add page! I'm {{ name1 }}, {{ age }} years old</h1>
+    {% block content1 %}
+    <h2>這是 Add 區會被替換的區域</h2>
+    {% endblock%}
+    <h2>這是 Add 區不會被替換的區域</h2>
+    <button>Test</button>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='index.js')}}"></script>
+</body>
+</html>

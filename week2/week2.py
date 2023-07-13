@@ -1,5 +1,5 @@
 # Task1
-print("Task1：")
+print("Task1：雙重 for 迴圈，O(n^2)")
 
 def find_and_print(messages):
 # 
@@ -18,7 +18,7 @@ find_and_print({
 })
 
 # Task2
-print("\nTask2：")
+print("\nTask2：一個 for 迴圈，O(n)")
 def calculate_sum_of_bonus(data):
 # bonus = role * performance * (salary*5%)
 # role = {CEO: 1.3, Engineer:1.2, Sales: 1.2}
@@ -64,7 +64,7 @@ calculate_sum_of_bonus({
 }) # call calculate_sum_of_bonus function
 
 # Task3
-print("\nTask3：")
+print("\nTask3：雙重 for 迴圈，O(n^2)")
 def func(*data):
     unique = False
     for name1 in data:
@@ -84,7 +84,7 @@ func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花") # print �
 func("郭宣雅", "林靜宜", "郭宣恆", "林靜花") # print 沒有
 
 # Task4
-print("\nTask4：")
+print("\nTask4：O(1)")
 
 def get_number(index):
 # your code here
@@ -97,7 +97,7 @@ get_number(5) # print 10
 get_number(10) # print 15
 
 # Task5
-print("\nTask5：")
+print("\nTask5：都是單個 for 迴圈，O(n)")
 def find_index_of_car(seats, status, number):
 # your code here
     dic = {}
@@ -128,7 +128,7 @@ find_index_of_car([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4) # print -1
 find_index_of_car([4, 6, 5, 8], [0, 1, 1, 1], 5) # print 2
 
 # Additional Task1
-print("\nAdditional Task1：")
+print("\nAdditional Task1：雙重 for 迴圈，O(n^2)")
 def max_product(nums):
     # 兩兩相乘後所有結果組成新 list
     # 找出 list 中最大數
@@ -154,7 +154,7 @@ max_product([5,-1,-2,0]) # 2
 max_product([-5,-2]) # 10
 
 # Additional Task2
-print("\nAdditional Task2：")
+print("\nAdditional Task2：雙重 for 迴圈，O(n^2)")
 def twoSum(nums, target):
   # 跑迴圈兩兩相加
   # 找出 target = num1 + num2
