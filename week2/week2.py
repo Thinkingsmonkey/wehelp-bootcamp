@@ -154,7 +154,7 @@ max_product([5,-1,-2,0]) # 2
 max_product([-5,-2]) # 10
 
 # Additional Task2
-print("\nAdditional Task2：雙重 for 迴圈，O(n^2)")
+print("\nAdditional Task2：修改後剩單迴圈，O(n)")
 def twoSum(nums, target):
   # 跑迴圈兩兩相加
   # 找出 target = num1 + num2
@@ -163,13 +163,11 @@ def twoSum(nums, target):
   # 將 index1, index2 append 到 lis 中
   # print index1, index2
   lis = []
-  for index1, num1 in enumerate(nums):
-      for index2, num2 in enumerate(nums):
-          if index1 == index2: continue
-          if index1 in lis or index2 in lis: continue
-          if num1 + num2 == target:
-              lis.append(index1)
-              lis.append(index2)
-  return lis
-result = twoSum([2, 11, 7, 15], 9)
+  dic = {}
+  for index, num in enumerate(nums):
+      theNum = target - num
+      if theNum in dic: return [dic[theNum], index]
+      dic[num] = index
+  
+result = twoSum([2, 11, 7, 15], 18)
 print(result); # show [0,2]
