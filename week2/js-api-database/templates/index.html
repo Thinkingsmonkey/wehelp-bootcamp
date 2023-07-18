@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <h1>This is Home page</h1>
+    User: <input class="user" type="text">
+    <br>
+    <br>
+    Password: <input class="password" type="text">
+    <br>
+    <br>
+    <button class="btn">註冊/登入</button>
+    <br>
+    <br>
+    <p>是否註冊成功：</p>
+    <p class="res">...{{ res }}</p>
+
+    <script>
+        const btn = document.querySelector('.btn');
+        const user = document.querySelector('.user');
+        const pass = document.querySelector('.password');
+        const res = document.querySelector('.res');
+        btn.addEventListener('click', () => {
+            let userName = user.value;
+            let password = pass.value;
+            signup(userName, password)
+        })
+        function signup(userName, password) {
+            let result;
+            axios({
+                method: 'post',
+                url: 'http://127.0.0.1:5000/signup',
+                data: {
+                    userName: userName,
+                    password: password
+                }
+            }).then(resp => {
+                res.innerHTML = resp.data;
+            }).catch(err =>{
+                // console.log(err.response);
+                return "失敗";
+            })
+        }
+    </script>
+</body>
+</html>

@@ -13,6 +13,7 @@ h2 {
 }
 img {
     object-fit: cover;
+    height: 250px;
 }
 header {
     padding: 20px;
@@ -71,16 +72,23 @@ header {
     text-align: center;
     padding: 10px 0;
     position: absolute;
-    bottom: 0;
+    top: 170px;
     width: 100%;
 }
 .contentCards li::before {
     content: "";
     background-color: #fff;
     position: absolute;
-    height: 40px;
+    height: 80px;
     width: 100%;
-    opacity: .5;
+    opacity: .8;
     bottom: 0;
     left: 0;
+}
+.addImg {
+    padding: 15px;
+    margin: 25px auto;
+    display: block;
+    font-size: 20px;
+    border-radius: 5px;
 }

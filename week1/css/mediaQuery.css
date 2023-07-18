@@ -13,7 +13,6 @@
     }
     .contentCards img {
         width: 100%;
-        height: 250px;
     }
 }
 @media (min-width: 360px) and (max-width: 600px) {
