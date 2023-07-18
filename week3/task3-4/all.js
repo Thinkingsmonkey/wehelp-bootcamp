@@ -75,9 +75,3 @@ function renderImg(result, num, headerCards, contentCards) {
   contentCards.appendChild(li);
   li.append(span, img, h3);
 }
-
-// let reStr = /(.jpg)/gi;
-// results.forEach((item) => {
-//   let result = item["file"].split(reStr);
-//   // console.log(result[0] + result[1]);
-// });
