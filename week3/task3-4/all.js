@@ -1,3 +1,16 @@
+// page loading
+const loadBg = document.querySelector(".load-bg");
+window.addEventListener("load", () => {
+  loadBg.classList.add("fade-out")
+
+  setTimeout(() => {
+    loadBg.style.display = "none";
+    console.log(123);
+  },1000);
+
+})
+
+// side bar
 const burger = document.querySelector(".menuBurger");
 const menu = document.querySelector(".menu");
 const burgerBg = document.querySelector(".menuBurgerBg");
@@ -8,6 +21,8 @@ function burgerActive() {
 
 burger.addEventListener("click", burgerActive);
 burgerBg.addEventListener("click", burgerActive);
+
+// render Img
 url =
   "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json";
 async function getResult(url) {
@@ -23,14 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let target = 33;
   let num = 0;
 
-  // 清空預設
-  while (contentCards.firstChild || headerCards.firstChild) {
-    if (contentCards.firstChild)
-      contentCards.removeChild(contentCards.firstChild);
-    if (headerCards.firstChild) headerCards.removeChild(headerCards.firstChild);
-  }
-
-  // 補內容
+  // 
   for (num; num < 15; num++) {
     renderImg(results[num], num, headerCards, contentCards);
   }

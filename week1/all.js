@@ -1,13 +1,19 @@
+// loading 動畫
+const loadBg = document.querySelector(".la-ball-scale-pulse");
+
+// 側邊攔
 const burger = document.querySelector(".menuBurger");
 const menu = document.querySelector(".menu");
 const burgerBg = document.querySelector(".menuBurgerBg");
 let items;
-function burgerActive() {
+function burgerActive() { 
   menu.classList.toggle("active");
 }
 
 burger.addEventListener("click", burgerActive);
 burgerBg.addEventListener("click", burgerActive);
+
+// 圖片載入
 url =
   "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json";
 async function getResult(url) {
@@ -60,7 +66,6 @@ function renderImg(result, num, headerCards, contentCards) {
   img.src = imgSrc[0] + imgSrc[1];
   img.src = img.src;
   h3.textContent = result["stitle"];
-
   //  headerCards
   if (num < 3) {
     li.classList = "d-flex align-items-center";

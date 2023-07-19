@@ -1,17 +1,12 @@
-def getTitles(page, num) :
-    # 創一個空物件，空物件將參數當作 key，賦予需要的值
-    # 回傳該物件
-    variable = {}
-    variable[page +"_titles"] = f'11111 {num}'
-    variable[page] = [1234]
-    return variable
+pageDic = {"url": "example.com", "next_page_url": None, "page_bs4_root": None}
+b = pageDic
+c = pageDic
+print( b == pageDic, c == b, c == pageDic)
+def update_pageDic():
+    return {"url": "new_url", "next_page_url": "next_page_url", "page_bs4_root": "new_bs4_root"}
 
+pageDic = update_pageDic()
+print( b == pageDic, c == b, c == pageDic)
 
-
-test = getTitles("page1",1)
-print(test["page1_titles"])
-
-
-# for i in range(1,10):
-#     locals()['number'+str(i)] = i
-#     print('Print In Once: ', type(locals()['number'+str(i)]))
+b.update(update_pageDic())
+print(b == pageDic, c == b, c == pageDic)
