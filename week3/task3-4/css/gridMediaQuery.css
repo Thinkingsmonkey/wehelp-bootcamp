@@ -9,10 +9,7 @@
         width: 100%;
     }
     .contentCards li {
-        width: calc(25% - 15px);
-    }
-    .contentCards li:last-child {
-        width: 100%;
+        /* width: calc(25% - 15px); */
     }
     .contentCards img {
         width: 100%;

@@ -1,0 +1,22 @@
+
+.header {
+  text-align: center;
+  background-color: #234;
+  &__title {
+    padding: 25px 0;
+    font-size: 25px;
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+.sign {
+  text-align: center;
+  padding-top: 25px;
+  & > *, & form > *, .squqred > * {
+    margin-bottom: 10px;
+  }
+  hr {
+    margin-bottom: 25px;
+  }
+}

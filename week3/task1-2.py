@@ -120,16 +120,16 @@ url = "https://www.ptt.cc/bbs/movie/index.html"
 pttHost = "https://www.ptt.cc"
 row = []
 for i in range(0, search_num):
-    print(i)
+    start = time.time()
+    print(i+1)
     # 取得 當前頁 bs4-root
     page_root = get_bs4_root(url)
     # 找出 title、tweet、time
-    start = time.time()
     write_page_row(page_root)
+    # 取得下一頁網址
+    url = pttHost + page_root.find("a", class_="btn wide", string="‹ 上頁").get("href")
     end = time.time()
     print("Time：", end - start, "seconds")
-    # 取得下一頁網址
-    url = get_next_page_url(page_root)
 
 
 with open("movie.txt", "w", encoding="utf-8", newline="") as file:
