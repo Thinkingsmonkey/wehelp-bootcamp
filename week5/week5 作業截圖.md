@@ -6,9 +6,7 @@
 
 - 創建 符合作業預設條件的 table member
 
-   - 
-
-      ![image 1.png](./week5%20作業截圖-assets/image1.png)
+   ![image 1.png](./week5%20作業截圖-assets/image1.png)
 
       
 
