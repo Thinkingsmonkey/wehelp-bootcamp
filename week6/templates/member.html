@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>會員頁面</title>
+  </head>
+  <body>
+    {% extends "index.html" %} {% block header %}
+    <h2 class="header__title">歡迎光臨，這是會員頁面</h2>
+    {% endblock %} {% block main %}
+    <h3 class="sign__title">{{ name }}， {{ message }}</h3>
+    <button>
+      <a href="/signout">登出</a>
+    </button>
+    <br />
+    {% endblock %} {% block section %}
+    <button>
+      <a href="/">回首頁</a>
+    </button>
+    <hr />
+    <h2>快來留言吧</h2>
+    <form action="/createMessage" method="POST" class="container text-center">
+      內容 <input type="text" name="content" /> <br />
+      <button>送出</button>
+    </form>
+    <hr>
+    <ul class="contents">
+      {% for content in contents %}
+        <li class="contents__item"><span class="item__title">{{ content[0] }}</span>: {{ content[1] }} 
+        <form action="/deleteMessage" method="POST">
+          <input type="hidden" name="index" value="{{ loop.index }}">
+          <button>X</button>
+        </form>
+        </li>
+      {% endfor %}
+    </ul>
+    {% endblock %}
+  </body>
+</html>

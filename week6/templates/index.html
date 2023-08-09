@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>會員登入首頁</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+  </head>
+  <body>
+    <header class="header container">
+      {% block header %}
+      <h2 class="header__title">歡迎光臨，請輸入帳號密碼</h2>
+      {% endblock %}
+    </header>
+    <main class="sign container">
+      {% block main %}
+      <h3 class="sign__title">登入系統</h3>
+      <form
+        action="/signin"
+        method="POST"
+        class="d-flex d-flex-direction-column align-items-center"
+      >
+        <div class="sign__username">
+          帳號 <input type="text" name="username"/>
+        </div>
+        <div class="sign__password">
+          密碼 <input type="password" name="password"/>
+        </div>
+        <div class="sign__checkbox">
+          同意條款 <input type="checkbox"/>
+        </div>
+        <button class="sign__button">登入</button>
+      </form>
+
+      <hr />
+
+      <h3 class="sign__title">註冊會員</h3>
+      <form
+        action="/signup"
+        method="POST"
+        class="d-flex d-flex-direction-column align-items-center"
+      >
+        <div class="sign__nickName">
+          暱稱 <input type="text" name="name"/>
+        </div>
+        <div class="sign__username">
+          帳號 <input type="text" name="username"/>
+        </div>
+        <div class="sign__password">
+          密碼 <input type="password" name="password"/>
+        </div>
+        <div class="sign__checkbox">
+          同意條款 <input type="checkbox" name=""/>
+        </div>
+        <button class="sign__button">註冊</button>
+      </form>
+      <hr />
+      {% endblock%} {% block section %}
+      <form
+        action="/square"
+        method="POST"
+        class="square d-flex d-flex-direction-column align-items-center"
+      >
+        <h2 class="square__title">計算正整數的平方</h2>
+        <div class="square_intupWrap">
+          正整數 <input type="text" name="square" id="" />
+        </div>
+        <button class="square__button">計算</button>
+      </form>
+      {% endblock %}
+    </main>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/signin.js') }}"
+    ></script>
+  </body>
+</html>
