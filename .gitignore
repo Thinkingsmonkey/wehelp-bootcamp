@@ -4,3 +4,4 @@ __pycache__/
 /node_modules
 /MySQL_Learn
 /learn
+**/test.py
