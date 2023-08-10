@@ -58,10 +58,6 @@ def signin():
     password = request.form.get("password")
     data = {"username": username, "password": password}
 
-    # 若 session 以經有 username
-    if "username" in session:
-        return redirect(url_for("member", message="You are already logged in"))
-    
     # 判斷輸入是否有空值
     if not username or not password:
         message = "Please enter username and password"
@@ -97,10 +93,6 @@ def signup():
     password = request.form.get("password")
     name = request.form.get("name")
     data = {"name": name, "username": username, "password": password}
-
-    # 若 session 以經有 username
-    if "username" in session:
-        return redirect(url_for("member", message="You are already logged in"))
 
     # 判斷是否空值
     if not username or not password:
