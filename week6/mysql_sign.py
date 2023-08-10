@@ -51,6 +51,6 @@ def deleteMessage(cursor, index):
     # query = f'DELETE FROM message WHERE id = {data[0]}'
     # 法二：
     # # 利用雙層子查詢直接指定刪除該 row 資料
-    query = f'DELETE FROM message WHERE id IN (SELECT id FROM (SELECT id FROM message ORDER BY id LIMIT {index-1},1)a);'
-    cursor.execute(query)
+    query = 'DELETE FROM message WHERE id IN (SELECT id FROM (SELECT id FROM message ORDER BY id LIMIT %s,1)a);'
+    cursor.execute(query, (index-1,))
     return "OK"
