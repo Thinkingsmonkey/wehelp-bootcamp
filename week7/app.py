@@ -152,16 +152,16 @@ def memberAPI():
         mysql_sign.con_close(connect["con"])
         if data == None:
             return falseReturn, 400
-        return { "data": {
+        return jsonify({ "data": {
             "username": data[0],
             "name": data[1],
             "id": data[2],
-        }}
+        }})
     
     if request.method == "PATCH":
         if "username" not in session:
             return jsonify({"message": "當前未登入，變更失敗!"}), 401
-        newName = request.data.decode("utf-8")
+        newName = request.json()
         connect = mysql_sign.get_connect(db_pool)
         mysql_sign.patch_name(connect["cursor"], session["id"], newName)
         connect["con"].commit()
@@ -171,11 +171,11 @@ def memberAPI():
         session["id"] = data[2]
         session["name"] = data[1]
         session["username"] = data[0]
-        return { "data": {
+        return jsonify({ "data": {
             "username": data[0],
             "name": data[1],
             "id": data[2],
-        }}
+        }})
 
 
 app.run(port=3000, debug=True)

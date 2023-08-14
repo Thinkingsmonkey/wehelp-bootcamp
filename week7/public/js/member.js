@@ -35,9 +35,11 @@ async function patch_name(){
   try {
     const response = await fetch(url,{
       method: "PATCH",
-      body: patchInput.value,
+      body: {
+        "name": patchInput.value,
+      },
       headers: {
-        "content-type": "text/plain",
+        "content-type": "application/json",
       },
     });
     if (!response.ok) {
