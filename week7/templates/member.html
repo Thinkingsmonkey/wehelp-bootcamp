@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>會員頁面</title>
+  </head>
+  <body>
+    {% extends "index.html" %} {% block header %}
+    <h2 class="header__title">歡迎光臨，這是會員頁面</h2>
+    {% endblock %} {% block main %}
+    <h3 class="sign__title"><span>{{ name }}</span>， {{ message }}</h3>
+    <button>
+      <a href="/signout">登出</a>
+    </button>
+    <br />
+    {% endblock %} {% block section %}
+    <button>
+      <a href="/">回首頁</a>
+    </button>
+    <hr />
+    <h2>查詢會員姓名</h2>
+    <input type="text" class="searchInput" placeholder="請輸入會員帳號"> <button class="searchButton">查詢</button>
+    <p class="memberInfo"></p>
+    <hr />
+    <h2>更新我的姓名</h2>
+    <input type="text" class="patchInput"> <button class="patchButton">更新</button>
+    <p class="patchMessage"></p>
+    <hr />
+    <h2>快來留言吧</h2>
+    <form action="/createMessage" method="POST" class="container text-center">
+      內容 <input type="text" name="content" /> <br />
+      <button>送出</button>
+    </form>
+    <hr />
+    <ul class="contents">
+      {% for content in contents %}
+      <li class="contents__item">
+        <span class="item__title">{{ content[0] }}</span><span class="content_username">{{ content[2] }}</span>: {{ content[1] }}
+        <form action="/deleteMessage" method="POST">
+          <input type="hidden" name="index" value="{{ loop.index }}" />
+          <button>X</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+    <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='js/member.js') }}"
+  ></script>
+    {% endblock %}
+  </body>
+</html>
