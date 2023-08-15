@@ -31,13 +31,11 @@ async function patch_name(){
   const url = `/api/member`;
   const content_usernames = document.querySelectorAll(".content_username");
   const item__titles = document.querySelectorAll(".item__title");
-
+  const bodyData = {"name": patchInput.value};
   try {
     const response = await fetch(url,{
       method: "PATCH",
-      body: {
-        "name": patchInput.value,
-      },
+      body: JSON.stringify(bodyData),
       headers: {
         "content-type": "application/json",
       },

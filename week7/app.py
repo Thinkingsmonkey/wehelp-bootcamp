@@ -161,7 +161,7 @@ def memberAPI():
     if request.method == "PATCH":
         if "username" not in session:
             return jsonify({"message": "當前未登入，變更失敗!"}), 401
-        newName = request.json()
+        newName = request.json.get("name")
         connect = mysql_sign.get_connect(db_pool)
         mysql_sign.patch_name(connect["cursor"], session["id"], newName)
         connect["con"].commit()
