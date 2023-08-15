@@ -160,7 +160,7 @@ def memberAPI():
     
     if request.method == "PATCH":
         if "username" not in session:
-            return jsonify({"message": "當前未登入，變更失敗!"}), 401
+            return jsonify({"error":True, "message": "更新失敗!"}), 401
         newName = request.json.get("name")
         connect = mysql_sign.get_connect(db_pool)
         mysql_sign.patch_name(connect["cursor"], session["id"], newName)
@@ -171,11 +171,13 @@ def memberAPI():
         session["id"] = data[2]
         session["name"] = data[1]
         session["username"] = data[0]
-        return jsonify({ "data": {
+        return jsonify({ 
+            "ok": True,
+            "data": {
             "username": data[0],
             "name": data[1],
-            "id": data[2],
-        }})
+            }
+        })
 
 
 app.run(port=3000, debug=True)
