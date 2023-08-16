@@ -1,0 +1,38 @@
+ul {
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+.d-flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.d-flex-direction-column {
+  flex-direction: column;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-space-between {
+  justify-content: space-between;
+}
+.align-items-center {
+  align-items: center;
+}
+.align-content-center {
+  align-content: center;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.text-center{
+  text-align: center;
+}
+.container {
+  margin: 0 auto;
+}
