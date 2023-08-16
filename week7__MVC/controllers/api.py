@@ -1,4 +1,4 @@
-from flask import Blueprint, request, session, redirect, url_for, jsonify
+from flask import Blueprint, request, session, jsonify
 from model.dbConfig import db_pool
 import model.memberModel as memberModel
 import model.connectModel as connectModel
