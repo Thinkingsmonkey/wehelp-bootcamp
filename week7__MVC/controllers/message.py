@@ -1,37 +1,36 @@
 from flask import Blueprint, request, session, redirect, url_for
-from model.dbConfig import db_pool
-import model.memberModel as memberModel
-import model.messageModel as messageModul
-import model.connectModel as connectModel
+from models.db_config import db_pool
+import models.message_model as message_modul
+import models.connect_model as connect_model
 
 
-messageCtrlr = Blueprint("message", __name__)
+message_controller = Blueprint("message", __name__)
 
-@messageCtrlr.route("/", methods=["POST", "GET"])
-def createMessage():
+
+@message_controller.route("/", methods=["POST", "GET"])
+def create_message():
     if request.method == "POST":
-      content = request.form.get("content")
+        content = request.form.get("content")
         # 操控數據庫 添加留言
-      data = {
-          "id": session["id"], 
-          "username": session["username"], 
-          "name": session["name"], 
-          "content": content
-      }
-      connect = connectModel.get_connect(db_pool)
-      messageModul.createMessage(connect["cursor"], data)
-      connectModel.con_close(connect["con"])
-      return redirect("/message")
+        data = {
+            "id": session["id"],
+            "username": session["username"],
+            "name": session["name"],
+            "content": content,
+        }
+        connect = connect_model.get_connect(db_pool)
+        message_modul.create_message(connect["cursor"], data)
+        connect_model.con_close(connect["con"])
+        return redirect("/message")
     return redirect(url_for("member.member"))
 
 
-
-@messageCtrlr.route("/del", methods=["POST", "GET"])
-def deleteMessage():
+@message_controller.route("/del", methods=["POST", "GET"])
+def delete_message():
     if request.method == "POST":
         index = request.form.get("index")
-        connect = connectModel.get_connect(db_pool)
-        messageModul.deleteMessage(connect["cursor"], index)
-        connectModel.con_close(connect["con"])
+        connect = connect_model.get_connect(db_pool)
+        message_modul.delete_message(connect["cursor"], index)
+        connect_model.con_close(connect["con"])
         return redirect("/message")
     return redirect(url_for("member.member"))
