@@ -13,7 +13,7 @@ def member():
         message = request.args.get("message", "Welcome")
         connect = connect_model.get_connect(db_pool)
         contents = message_model.get_contents(connect["cursor"])
-        connect_model.con_close(connect["con"])
+        connect_model.connect_close(connect["con"])
         return render_template(
             "member.html", message=message, name=session["name"], contents=contents
         )
@@ -35,13 +35,14 @@ def signin():
     # 建立 cursor 物件
     connect = connect_model.get_connect(db_pool)
     # 檢查帳號密碼、根據結果執行成功或失敗事件
-    result = member_model.signin(connect["cursor"], data)
-    connect_model.con_close(connect["con"])
-    if result != None:
+    data = member_model.signin(connect["cursor"], data)
+    username_db, name_db, id_db = data
+    connect_model.connect_close(connect["con"])
+    if data != None:
         # session 管理登入狀態
-        session["id"] = result[0]
-        session["name"] = result[1]
-        session["username"] = result[2]
+        session["username"] = username_db
+        session["name"] = name_db
+        session["id"] = id_db
         message = "Congratulations, you have successfully logged in"
         return redirect(url_for("member.member", message=message))
     message = "Username or password is not correc"
@@ -71,11 +72,12 @@ def signup():
     # 註冊
     # 建立 cursor 物件
     connect = connect_model.get_connect(db_pool)
-    result = member_model.signup(connect["cursor"], data)
-    connect_model.con_close(connect["con"])
-    if result == "This e-mail has already been registered, please try another one。":
-        return redirect(url_for("error.error", message=result))
-    session["id"] = result[0]
-    session["name"] = result[1]
-    session["username"] = result[2]
+    data = member_model.signup(connect["cursor"], data)
+    username_db, name_db, id_db = data
+    connect_model.connect_close(connect["con"])
+    if data == "This e-mail has already been registered, please try another one。":
+        return redirect(url_for("error.error", message=data))
+    session["username"] = username_db
+    session["name"] = name_db
+    session["id"] = id_db
     return redirect("/")

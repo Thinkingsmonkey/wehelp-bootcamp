@@ -1,6 +1,6 @@
 from flask import Blueprint, request, session, redirect, url_for
 from models.db_config import db_pool
-import models.message_model as message_modul
+import models.message_model as message_model
 import models.connect_model as connect_model
 
 
@@ -19,8 +19,8 @@ def create_message():
             "content": content,
         }
         connect = connect_model.get_connect(db_pool)
-        message_modul.create_message(connect["cursor"], data)
-        connect_model.con_close(connect["con"])
+        message_model.create_message(connect["cursor"], data)
+        connect_model.connect_close(connect["con"])
         return redirect("/message")
     return redirect(url_for("member.member"))
 
@@ -30,7 +30,7 @@ def delete_message():
     if request.method == "POST":
         index = request.form.get("index")
         connect = connect_model.get_connect(db_pool)
-        message_modul.delete_message(connect["cursor"], index)
-        connect_model.con_close(connect["con"])
+        message_model.delete_message(connect["cursor"], index)
+        connect_model.connect_close(connect["con"])
         return redirect("/message")
     return redirect(url_for("member.member"))

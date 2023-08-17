@@ -5,6 +5,6 @@ def get_connect(db_pool):
 
 
 # 結束連線
-def con_close(con):
+def connect_close(con):
     con.commit()
     con.close()

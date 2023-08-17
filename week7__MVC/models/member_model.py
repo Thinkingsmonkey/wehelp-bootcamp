@@ -27,7 +27,7 @@ def check_member(cursor, data):
 
 # 登入帳號
 def signin(cursor, data):
-    query = "SELECT * FROM member WHERE username = %s AND password = %s"
+    query = "SELECT username, name, id FROM member WHERE username = %s AND password = %s"
     cursor.execute(query, (data["username"], data["password"]))
     return cursor.fetchone()
 

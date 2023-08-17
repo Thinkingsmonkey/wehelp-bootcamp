@@ -15,7 +15,7 @@ def member_api():
         username = request.args.get("username")
         connect = connect_model.get_connect(db_pool)
         data = member_model.search_member(connect["cursor"], username)
-        connect_model.con_close(connect["con"])
+        connect_model.connect_close(connect["con"])
         if data == None:
             return falseReturn, 400
         return jsonify(
@@ -36,11 +36,12 @@ def member_api():
         member_model.patch_name(connect["cursor"], session["id"], new_name)
         connect["con"].commit()
         data = member_model.search_member(connect["cursor"], session["username"])
+        connect_model.connect_close(connect["con"])
+        username_db, name_db, id_db = data
         # 當 member 的 name 被修改後，session 也要一起修改
-        connect_model.con_close(connect["con"])
-        session["id"] = data[2]
-        session["name"] = data[1]
-        session["username"] = data[0]
+        session["id"] = id_db
+        session["name"] = name_db
+        session["username"] = username_db
         return jsonify(
             {
                 "ok": True,
