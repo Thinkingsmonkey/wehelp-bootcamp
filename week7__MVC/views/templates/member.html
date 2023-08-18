@@ -36,14 +36,15 @@
     </form>
     <hr />
     <ul class="contents">
-      {% for content in contents %}
+      {% for key, data in datas.items() %}
       <li class="contents__item">
-        <span class="item__title">{{ content[0] }}</span
-        ><span class="content_username">{{ content[2] }}</span>: {{ content[1]
+        <span class="item__title">{{ data["name"] }}</span
+        >: {{ data["content"]
         }}
-        <form action="/message/del" method="POST">
+        <form action="/message" method="POST">
           <input type="hidden" name="index" value="{{ loop.index }}" />
-          <button>X</button>
+          <span class="content_id">{{ data["message_id"] }}</span>
+          <button class="message__deleteBtn">X</button>
         </form>
       </li>
       {% endfor %}

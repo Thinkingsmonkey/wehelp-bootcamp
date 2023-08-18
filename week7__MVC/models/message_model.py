@@ -6,7 +6,7 @@ def create_message(cursor, data):
 
 # 取得所有留言
 def get_contents(cursor):
-    query = "SELECT member.name, message.content, member.username FROM member INNER JOIN message ON member.id = message.member_id"
+    query = "SELECT member.name, message.content, member.username, message.id FROM member INNER JOIN message ON member.id = message.member_id"
     cursor.execute(query)
     return cursor.fetchall()
 
@@ -15,6 +15,6 @@ def get_contents(cursor):
 def delete_message(cursor, index):
     index = int(index)
     # 利用雙層子查詢直接指定刪除該 row 資料
-    query = "DELETE FROM message WHERE id IN (SELECT id FROM (SELECT id FROM message ORDER BY id LIMIT %s,1)a);"
-    cursor.execute(query, (index - 1,))
-    return "OK"
+    query = "DELETE FROM message WHERE id = %s"
+    cursor.execute(query, (index,))
+    return cursor.rowcount

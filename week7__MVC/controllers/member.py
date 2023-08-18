@@ -14,8 +14,18 @@ def member():
         connect = connect_model.get_connect(db_pool)
         contents = message_model.get_contents(connect["cursor"])
         connect_model.connect_close(connect["con"])
+        # 使用 for 將 contents 改為 dict (可轉 json)讓前端能夠使用
+        dirt = {}
+        for index,item in enumerate(contents):
+            name, content, username, message_id = item
+            dirt[index] = {
+                "username": username,
+                "name": name,
+                "content": content,
+                "message_id": message_id,
+            }
         return render_template(
-            "member.html", message=message, name=session["name"], contents=contents
+            "member.html", message=message, name=session["name"], datas=dirt
         )
     return redirect("/")
 
