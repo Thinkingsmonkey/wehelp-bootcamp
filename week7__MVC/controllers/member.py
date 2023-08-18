@@ -14,8 +14,18 @@ def member():
         connect = connect_model.get_connect(db_pool)
         contents = message_model.get_contents(connect["cursor"])
         connect_model.connect_close(connect["con"])
+        # 使用 for 將 contents 改為 dict (可轉 json)讓前端能夠使用
+        dirt = {}
+        for index,item in enumerate(contents):
+            name, content, username, message_id = item
+            dirt[index] = {
+                "username": username,
+                "name": name,
+                "content": content,
+                "message_id": message_id,
+            }
         return render_template(
-            "member.html", message=message, name=session["name"], contents=contents
+            "member.html", message=message, name=session["name"], datas=dirt
         )
     return redirect("/")
 
@@ -48,11 +58,10 @@ def signin():
     message = "Username or password is not correc"
     return redirect(url_for("error.error", message=message))
 
-
+# 連結到 signout 就不需要判斷是否存在 session，都是要清空
 @member_controller.route("/signout")
 def signout():
-    if "username" in session:
-        del session["username"]
+    session.clear() # 清空 session 資訊=>所有
     return redirect("/")
 
 
@@ -67,7 +76,7 @@ def signup():
     # 判斷是否空值
     if not username or not password:
         message = "Please enter username and password"
-        return redirect(url_for("error.error", message=message))
+        return redirect(url_for("error.error", message=message)), 401
 
     # 註冊
     # 建立 cursor 物件
