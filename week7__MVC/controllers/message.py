@@ -25,7 +25,7 @@ def create_message():
     return redirect(url_for("member.member"))
 
 
-@message_controller.route("/<id>", methods=["DELETE"])
+@message_controller.route("/<int:id>", methods=["DELETE"])
 def delete_message(id):
     connect = connect_model.get_connect(db_pool)
     result = message_model.delete_message(connect["cursor"], id)
