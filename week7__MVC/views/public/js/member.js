@@ -4,7 +4,11 @@ const searchInput = document.querySelector(".searchInput"),
   patchInput = document.querySelector(".patchInput"),
   patchButton = document.querySelector(".patchButton"),
   patchMessage = document.querySelector(".patchMessage"),
-  memberName = document.querySelector(".sign__title span");
+  memberName = document.querySelector(".sign__title span"),
+  message__deleteBtn = document.querySelectorAll(".message__deleteBtn");
+
+
+
 
 async function get_memberInfo() {
   const url = `/api/member?username=${searchInput.value}`;
@@ -64,5 +68,23 @@ async function patch_name(){
   }
 }
 
+
+async function delete_message(e) {
+  // 點擊後先阻止預設動作
+  e.preventDefault();
+  // 連線 delete api
+  // 取得 btn 前一個兄弟 input.value 加到 url 上
+  e.target.
+  url = "/message"
+  response = await fetch(url,)
+}
+
+
 searchButton.addEventListener("click", get_memberInfo);
 patchButton.addEventListener("click", patch_name)
+message__deleteBtn.forEach(item =>{
+  // item.addEventListener("click", delete_message)
+  item.addEventListener("click", e => {
+    // e.target
+  })
+})

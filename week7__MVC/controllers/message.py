@@ -25,12 +25,9 @@ def create_message():
     return redirect(url_for("member.member"))
 
 
-@message_controller.route("/del", methods=["POST", "GET"])
-def delete_message():
-    if request.method == "POST":
-        index = request.form.get("index")
-        connect = connect_model.get_connect(db_pool)
-        message_model.delete_message(connect["cursor"], index)
-        connect_model.connect_close(connect["con"])
-        return redirect("/message")
-    return redirect(url_for("member.member"))
+@message_controller.route("/<int:index>", methods=["DELETE"])
+def delete_message(index:int):
+    connect = connect_model.get_connect(db_pool)
+    message_model.delete_message(connect["cursor"], index)
+    connect_model.connect_close(connect["con"])
+    return redirect("/message")
