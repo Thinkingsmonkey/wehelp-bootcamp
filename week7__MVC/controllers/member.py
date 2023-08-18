@@ -48,11 +48,10 @@ def signin():
     message = "Username or password is not correc"
     return redirect(url_for("error.error", message=message))
 
-
+# 連結到 signout 就不需要判斷是否存在 session，都是要清空
 @member_controller.route("/signout")
 def signout():
-    if "username" in session:
-        del session["username"]
+    session.clear() # 清空 session 資訊=>所有
     return redirect("/")
 
 
@@ -67,7 +66,7 @@ def signup():
     # 判斷是否空值
     if not username or not password:
         message = "Please enter username and password"
-        return redirect(url_for("error.error", message=message))
+        return redirect(url_for("error.error", message=message)), 401
 
     # 註冊
     # 建立 cursor 物件
