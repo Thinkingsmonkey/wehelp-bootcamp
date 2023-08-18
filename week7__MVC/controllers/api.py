@@ -5,7 +5,9 @@ import models.connect_model as connect_model
 
 api_controller = Blueprint("api", __name__)
 
-
+#! 修改為符合 RESTful API 規格：
+# 1. 狀態碼 401 與 403 差別，401(未驗證，提示進行身分驗證)、403(已驗證但不具備訪問權限)，所以 "username" not in session 成立時是 401
+# 2. 當資源不存在時，使用 404，例如：找不到該 username，data == None 時
 @api_controller.route("/member", methods=["GET", "PATCH"])
 def member_api():
     if request.method == "GET":
@@ -17,7 +19,7 @@ def member_api():
         data = member_model.search_member(connect["cursor"], username)
         connect_model.connect_close(connect["con"])
         if data == None:
-            return falseReturn, 400
+            return falseReturn, 404
         return jsonify(
             {
                 "data": {
