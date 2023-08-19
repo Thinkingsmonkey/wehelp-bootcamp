@@ -76,7 +76,7 @@ def signup():
     # 判斷是否空值
     if not username or not password:
         message = "Please enter username and password"
-        return redirect(url_for("error.error", message=message)), 401
+        return render_template("error.html", message = message, code = 401) 
 
     # 註冊
     # 建立 cursor 物件
