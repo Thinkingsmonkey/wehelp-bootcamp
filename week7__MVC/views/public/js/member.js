@@ -40,7 +40,9 @@ async function patch_name() {
         "content-type": "application/json",
       },
     });
-    if (!response.ok) {
+    
+    console.log(response.ok);
+    if (response.status !== 200) {
       let resData = await response.json();
       throw new Error(resData.message);
     }
@@ -51,14 +53,18 @@ async function patch_name() {
     //  => 先讓 member 頁面的留言 for 輸出多一個 username，暫時使用 display:none
     //  => 將每個留言中的 username 與當前帳號的 username 相同的時候
     //  => 改變留言的 title 為修正後的 name
+    console.log(resData, memberName);
+    patchMessage.textContent = "更新成功";
+    memberName.textContent = resData.data.name;
+    // ! 若留言的 item__title = 先改者的 username，修改該留言 name
+
     item__titles.forEach((title, index) => {
       if (content_usernames[index].textContent === resData.data.username) {
         title.textContent = resData.data.name;
       }
     });
-    memberName.textContent = resData.data.name;
-    patchMessage.textContent = "更新成功";
   } catch (error) {
+    console.log("test");
     patchMessage.textContent = error.message;
   }
 }

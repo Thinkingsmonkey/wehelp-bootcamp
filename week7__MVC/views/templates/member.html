@@ -43,6 +43,8 @@
         }}
         <form action="/message" method="POST">
           <input type="hidden" name="index" value="{{ loop.index }}" />
+          <!-- ! 需要一個放 username 的 span 讓前端 patch_name 時能夠去找同 username 修改 name -->
+          <span class="content_username">{{ data["username"] }}</span>
           <span class="content_id">{{ data["message_id"] }}</span>
           <button class="message__deleteBtn">X</button>
         </form>
