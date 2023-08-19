@@ -45,11 +45,11 @@ def signin():
     # 建立 cursor 物件
     connect = connect_model.get_connect(db_pool)
     # 檢查帳號密碼、根據結果執行成功或失敗事件
-    data = member_model.signin(connect["cursor"], data)
-    username_db, name_db, id_db = data
+    result = member_model.signin(connect["cursor"], data)
     connect_model.connect_close(connect["con"])
-    if data != None:
+    if result != None:
         # session 管理登入狀態
+        username_db, name_db, id_db = result
         session["username"] = username_db
         session["name"] = name_db
         session["id"] = id_db
@@ -81,11 +81,12 @@ def signup():
     # 註冊
     # 建立 cursor 物件
     connect = connect_model.get_connect(db_pool)
-    data = member_model.signup(connect["cursor"], data)
-    username_db, name_db, id_db = data
+    result = member_model.signup(connect["cursor"], data)
     connect_model.connect_close(connect["con"])
-    if data == "This e-mail has already been registered, please try another one。":
-        return redirect(url_for("error.error", message=data))
+    if result == None:
+        message = "This e-mail has already been registered, please try another one。"
+        return redirect(url_for("error.error", message=message))
+    username_db, name_db, id_db = result
     session["username"] = username_db
     session["name"] = name_db
     session["id"] = id_db
