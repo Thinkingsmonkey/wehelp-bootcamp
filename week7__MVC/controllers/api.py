@@ -45,6 +45,7 @@ def member_api():
         session["id"] = id_db
         session["name"] = name_db
         session["username"] = username_db
+        print("test")
         return jsonify(
             {
                 "ok": True,
