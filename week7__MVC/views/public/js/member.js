@@ -16,7 +16,6 @@ async function get_memberInfo() {
         "Content-Type": "text/plain",
       },
     });
-    console.log(response);
     if (!response.ok) {
       throw new Error("無此會員");
     }
@@ -41,7 +40,6 @@ async function patch_name() {
       },
     });
     
-    console.log(response.ok);
     if (response.status !== 200) {
       let resData = await response.json();
       throw new Error(resData.message);
@@ -53,7 +51,6 @@ async function patch_name() {
     //  => 先讓 member 頁面的留言 for 輸出多一個 username，暫時使用 display:none
     //  => 將每個留言中的 username 與當前帳號的 username 相同的時候
     //  => 改變留言的 title 為修正後的 name
-    console.log(resData, memberName);
     patchMessage.textContent = "更新成功";
     memberName.textContent = resData.data.name;
     // ! 若留言的 item__title = 先改者的 username，修改該留言 name
@@ -64,7 +61,6 @@ async function patch_name() {
       }
     });
   } catch (error) {
-    console.log("test");
     patchMessage.textContent = error.message;
   }
 }
